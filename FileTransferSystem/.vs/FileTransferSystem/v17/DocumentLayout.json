@@ -1,0 +1,40 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Administrator\\Desktop\\DoAn\\DoAnLTM\\FileTransferSystem\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0CFD00E6-4545-41D1-B666-BE0D5FF42D59}|FileTransferServer\\FileTransferServer.csproj|c:\\users\\administrator\\desktop\\doan\\doanltm\\filetransfersystem\\filetransferserver\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{0CFD00E6-4545-41D1-B666-BE0D5FF42D59}|FileTransferServer\\FileTransferServer.csproj|solutionrelative:filetransferserver\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\DoAn\\DoAnLTM\\FileTransferSystem\\FileTransferServer\\Form1.cs",
+              "RelativeDocumentMoniker": "FileTransferServer\\Form1.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\DoAn\\DoAnLTM\\FileTransferSystem\\FileTransferServer\\Form1.cs [Design]",
+              "RelativeToolTip": "FileTransferServer\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-30T00:26:28.12Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
