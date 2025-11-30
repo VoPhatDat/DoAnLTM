@@ -10,16 +10,12 @@ using System.Windows.Forms;
 
 namespace FileTransferClient
 {
-    public partial class S : Form
+    public partial class ClientGUI : Form
     {
-        public S()
+        public ClientGUI()
         {
             InitializeComponent();
         }
 
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
