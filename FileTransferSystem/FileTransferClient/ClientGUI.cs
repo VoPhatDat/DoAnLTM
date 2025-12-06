@@ -1,18 +1,7 @@
 ﻿using System;
-<<<<<<< HEAD
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-=======
 using System.IO;
 using System.Net.Sockets;
 using System.Threading;
->>>>>>> client
 using System.Windows.Forms;
 
 namespace FileTransferClient
@@ -34,23 +23,12 @@ namespace FileTransferClient
             label5.Text = "Đã gửi: 0 / 0";
             label6.Text = "Tốc độ: 0 MB/s";
 
-            // QUAN TRỌNG: Gắn event cho nút Gửi (nếu chưa có)
+            // Gắn event
             btnSend.Click += btnSend_Click;
             btnBrowse.Click += btnBrowse_Click;
         }
 
-<<<<<<< HEAD
-        private void button1_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog ofd = new OpenFileDialog())
-            {
-                ofd.Title = "Chọn tập tin để gửi";
-                ofd.Filter = "Tất cả tập tin (*.*)|*.*";
-
-                if (ofd.ShowDialog() == DialogResult.OK)
-                {
-                    txtFilePath.Text = ofd.FileName;
-=======
+        // Chọn file
         private void btnBrowse_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
@@ -60,31 +38,31 @@ namespace FileTransferClient
                 {
                     filePath = ofd.FileName;
                     txtFilePath.Text = filePath;
+
                     fileSize = new FileInfo(filePath).Length;
                     label5.Text = $"Đã gửi: 0 / {FormatBytes(fileSize)}";
                     progressBar1.Value = 0;
->>>>>>> client
                 }
             }
         }
 
-<<<<<<< HEAD
-
-=======
+        // Bấm gửi
         private void btnSend_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(filePath) || !File.Exists(filePath))
             {
-                MessageBox.Show("Chọn file trước đã fen!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Chọn file trước đã!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             btnSend.Enabled = false;
+
             Thread thread = new Thread(SendFile);
             thread.IsBackground = true;
             thread.Start();
         }
 
+        // Hàm gửi file
         private void SendFile()
         {
             try
@@ -92,6 +70,7 @@ namespace FileTransferClient
                 using (TcpClient client = new TcpClient())
                 {
                     client.Connect(txtServerIP.Text.Trim(), int.Parse(txtPort.Text.Trim()));
+
                     using (NetworkStream stream = client.GetStream())
                     using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                     {
@@ -99,6 +78,7 @@ namespace FileTransferClient
                         string fileName = Path.GetFileName(filePath);
                         byte[] nameBytes = System.Text.Encoding.UTF8.GetBytes(fileName);
                         byte[] nameLen = BitConverter.GetBytes(nameBytes.Length);
+
                         stream.Write(nameLen, 0, 4);
                         stream.Write(nameBytes, 0, nameBytes.Length);
 
@@ -107,7 +87,7 @@ namespace FileTransferClient
                         stream.Write(sizeBytes, 0, 8);
 
                         // Gửi dữ liệu
-                        byte[] buffer = new byte[1024 * 1024]; // 1MB
+                        byte[] buffer = new byte[1024 * 1024]; // 1MB buffer
                         int bytesRead;
                         sentBytes = 0;
                         startTime = DateTime.Now;
@@ -121,8 +101,10 @@ namespace FileTransferClient
                             {
                                 progressBar1.Value = (int)((sentBytes * 100) / fileSize);
                                 label5.Text = $"Đã gửi: {FormatBytes(sentBytes)} / {FormatBytes(fileSize)}";
+
                                 double elapsed = (DateTime.Now - startTime).TotalSeconds;
                                 double speed = elapsed > 0 ? (sentBytes / elapsed / 1048576.0) : 0;
+
                                 label6.Text = $"Tốc độ: {speed:F2} MB/s";
                             }));
                         }
@@ -131,7 +113,7 @@ namespace FileTransferClient
 
                 this.Invoke((Action)(() =>
                 {
-                    MessageBox.Show("GỬI THÀNH CÔNG 100%!", "HOÀN TẤT", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Gửi thành công 100%!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     btnSend.Enabled = true;
                 }));
             }
@@ -139,12 +121,13 @@ namespace FileTransferClient
             {
                 this.Invoke((Action)(() =>
                 {
-                    MessageBox.Show("Lỗi: " + ex.Message, "Kết nối thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Lỗi: " + ex.Message, "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     btnSend.Enabled = true;
                 }));
             }
         }
 
+        // Format số byte cho UI
         private string FormatBytes(long bytes)
         {
             string[] suffixes = { "B", "KB", "MB", "GB" };
@@ -157,6 +140,5 @@ namespace FileTransferClient
             }
             return $"{size:F1} {suffixes[i]}";
         }
->>>>>>> client
     }
 }
