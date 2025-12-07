@@ -87,6 +87,10 @@ namespace FileTransferServer
 
             try
             {
+                // Lấy IP client gửi file
+                IPEndPoint remote = (IPEndPoint)client.Client.RemoteEndPoint;
+                string clientIP = remote.Address.ToString();
+
                 // Nhận độ dài tên file 
                 byte[] len = new byte[4];
                 stream.Read(len, 0, 4);
@@ -97,28 +101,29 @@ namespace FileTransferServer
                 stream.Read(nameData, 0, nameLen);
                 string fileName = Encoding.UTF8.GetString(nameData);
 
-                // Nhận kích thước file (8 bytes - long) 
+                // Nhận kích thước file 
                 byte[] sizeData = new byte[8];
                 stream.Read(sizeData, 0, 8);
                 long fileSize = BitConverter.ToInt64(sizeData, 0);
 
-                // Chuẩn bị thư mục lưu file 
+                // Log thêm IP người gửi
+                Log($"Client {clientIP} đang gửi file {fileName} ({FormatBytes(fileSize)})");
+
+                // Chuẩn bị lưu file
                 string folder = Path.Combine(Application.StartupPath, "Received");
                 Directory.CreateDirectory(folder);
 
-                string savePath = Path.Combine(folder,
-                    DateTime.Now.ToString("HHmmss") + "_" + fileName);
+                string savePath = Path.Combine(folder, DateTime.Now.ToString("HHmmss") + "_" + fileName);
 
-                // Đọc dữ liệu file qua stream (CLO2.2 + CLO3.1) 
+                // Nhận dữ liệu
                 using (FileStream fs = new FileStream(savePath, FileMode.Create))
                 {
-                    byte[] buffer = new byte[1024 * 1024]; // 1MB buffer
+                    byte[] buffer = new byte[1024 * 1024];
                     long received = 0;
                     int read;
 
-                    Log($"Đang nhận: {fileName} ({FormatBytes(fileSize)})");
+                    Log($"Đang nhận file từ {clientIP} ...");
 
-                    // Đọc luồng TCP và ghi vào FileStream
                     while (received < fileSize && (read = stream.Read(buffer, 0, buffer.Length)) > 0)
                     {
                         fs.Write(buffer, 0, read);
@@ -126,7 +131,7 @@ namespace FileTransferServer
                     }
                 }
 
-                Log($"NHẬN THÀNH CÔNG: {fileName} (lưu trong thư mục Received/)");
+                Log($"NHẬN THÀNH CÔNG từ {clientIP}: {fileName}");
             }
             catch (Exception ex)
             {
