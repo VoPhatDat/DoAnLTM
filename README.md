@@ -79,11 +79,10 @@ File sau khi Server nhận thành công sẽ được lưu tại:
 ---
 
 ## 👥 Thành viên thực hiện
-
-| STT | Họ và tên | MSSV | Vai trò |
-|:---:|:---|:---:|:---|
-| 1 | **Võ Phát Đạt** | [MSSV_Của_Ông] | Dev (Fullstack) |
-| 2 | [Tên thành viên khác] | [MSSV] | ... |
+1. Võ Phát Đạt
+2. Vũ Mạnh Hùng
+3. Dương Duy Quý
+4. Trần Hoàng Phúc
 
 ---
 
