@@ -42,8 +42,9 @@
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
-
+            // 
             // label1
+            // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.label1.Location = new System.Drawing.Point(15, 18);
@@ -51,14 +52,17 @@
             this.label1.Size = new System.Drawing.Size(79, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Chọn tập tin";
-
+            // 
             // txtFilePath
+            // 
             this.txtFilePath.Location = new System.Drawing.Point(100, 17);
             this.txtFilePath.Name = "txtFilePath";
             this.txtFilePath.Size = new System.Drawing.Size(337, 20);
             this.txtFilePath.TabIndex = 1;
-
+            // 
             // btnBrowse
+            // 
+            this.btnBrowse.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBrowse.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnBrowse.Location = new System.Drawing.Point(443, 16);
             this.btnBrowse.Name = "btnBrowse";
@@ -67,9 +71,10 @@
             this.btnBrowse.Text = "Browse";
             this.btnBrowse.UseVisualStyleBackColor = true;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
-
+            // 
             // panel1
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.btnBrowse);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.txtFilePath);
@@ -77,9 +82,10 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(533, 52);
             this.panel1.TabIndex = 4;
-
+            // 
             // panel2
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.btnSend);
             this.panel2.Controls.Add(this.txtPort);
             this.panel2.Controls.Add(this.txtServerIP);
@@ -89,8 +95,10 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(533, 44);
             this.panel2.TabIndex = 5;
-
+            // 
             // btnSend
+            // 
+            this.btnSend.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSend.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnSend.Location = new System.Drawing.Point(443, 11);
             this.btnSend.Name = "btnSend";
@@ -98,20 +106,24 @@
             this.btnSend.TabIndex = 6;
             this.btnSend.Text = "Gửi";
             this.btnSend.UseVisualStyleBackColor = true;
-
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click_1);
+            // 
             // txtPort
+            // 
             this.txtPort.Location = new System.Drawing.Point(322, 11);
             this.txtPort.Name = "txtPort";
             this.txtPort.Size = new System.Drawing.Size(64, 20);
             this.txtPort.TabIndex = 5;
-
+            // 
             // txtServerIP
+            // 
             this.txtServerIP.Location = new System.Drawing.Point(100, 11);
             this.txtServerIP.Name = "txtServerIP";
             this.txtServerIP.Size = new System.Drawing.Size(150, 20);
             this.txtServerIP.TabIndex = 3;
-
+            // 
             // label3
+            // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.label3.Location = new System.Drawing.Point(284, 11);
@@ -119,8 +131,9 @@
             this.label3.Size = new System.Drawing.Size(32, 17);
             this.label3.TabIndex = 4;
             this.label3.Text = "Port";
-
+            // 
             // label2
+            // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.label2.Location = new System.Drawing.Point(35, 11);
@@ -128,8 +141,10 @@
             this.label2.Size = new System.Drawing.Size(59, 17);
             this.label2.TabIndex = 3;
             this.label2.Text = "Server IP";
-
+            // 
             // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.progressBar1);
@@ -138,32 +153,36 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(533, 104);
             this.panel3.TabIndex = 6;
-
+            // 
             // label6
+            // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.label6.Location = new System.Drawing.Point(36, 69);
+            this.label6.Location = new System.Drawing.Point(35, 68);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(96, 17);
             this.label6.TabIndex = 10;
             this.label6.Text = "Tốc độ: z mb/s";
-
+            // 
             // label5
+            // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.label5.Location = new System.Drawing.Point(36, 42);
+            this.label5.Location = new System.Drawing.Point(35, 42);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 17);
             this.label5.TabIndex = 9;
             this.label5.Text = "Đã gửi: x/y";
-
+            // 
             // progressBar1
+            // 
             this.progressBar1.Location = new System.Drawing.Point(101, 13);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(418, 17);
             this.progressBar1.TabIndex = 8;
-
+            // 
             // label4
+            // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.label4.Location = new System.Drawing.Point(35, 13);
@@ -171,8 +190,9 @@
             this.label4.Size = new System.Drawing.Size(60, 17);
             this.label4.TabIndex = 7;
             this.label4.Text = "Progress";
-
+            // 
             // ClientGUI
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 240);
