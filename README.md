@@ -1,112 +1,97 @@
-📁 ĐỒ ÁN MÔN HỌC – LẬP TRÌNH MẠNG (LTM)
-⚡ Ứng dụng truyền file giữa hai máy tính sử dụng TCP
-📝 Giới thiệu
+# 📁 ĐỒ ÁN MÔN HỌC – LẬP TRÌNH MẠNG (LTM)
 
-Đồ án triển khai một hệ thống truyền tập tin dung lượng lớn giữa hai máy tính thông qua giao thức TCP.
-Hệ thống gồm 2 chương trình:
+> **Đề tài:** Ứng dụng truyền file giữa hai máy tính sử dụng giao thức TCP (TCP File Transfer System).
 
-Client → Gửi file
+## 📝 Giới thiệu
 
-Server → Nhận file
+Hệ thống triển khai mô hình **Client - Server** cho phép truyền tải tập tin (mọi định dạng: `.mp4`, `.zip`, `.exe`,...) với dung lượng lớn qua mạng LAN/Internet. 
 
-Ứng dụng hỗ trợ truyền file mọi định dạng, hiển thị tiến trình % và tốc độ truyền theo thời gian thực.
+Hệ thống bao gồm 2 module chính:
+* **Server:** Lắng nghe kết nối và nhận file.
+* **Client:** Kết nối tới Server và gửi file.
 
-🚀 Cách chạy chương trình
-1️⃣ Chạy Server trước
+💡 **Tính năng nổi bật:**
+* Hỗ trợ truyền file Binary an toàn.
+* Hiển thị **Real-time Progress**: % hoàn thành, dung lượng đã gửi.
+* Tính toán **Tốc độ truyền tải (MB/s)** theo thời gian thực.
+* Xử lý tên file tự động (Timestamp) để tránh ghi đè dữ liệu.
 
-Mở solution:
+---
 
-FileTransferSystem.sln
+## 🛠 Công nghệ & Kỹ thuật sử dụng
 
+* **Ngôn ngữ:** C# (.NET Framework 4.7.2 trở lên).
+* **IDE:** Visual Studio 2019 / 2022.
+* **Giao thức:** TCP/IP.
+* **Core Technics:**
+    * `System.Net.Sockets`: Sử dụng `TcpListener` (Server) và `TcpClient` (Client).
+    * `System.IO`: Sử dụng `NetworkStream` và `FileStream` để xử lý luồng dữ liệu.
+    * **Multithreading:** Xử lý đa luồng để Server có thể nhận nhiều kết nối hoặc không bị treo giao diện (UI) khi truyền tải.
+    * **Buffer Management:** Tối ưu hóa buffer size (1MB) để tăng tốc độ đọc ghi.
 
-Chọn project:
+---
 
-FileTransferServer
+## 🚀 Hướng dẫn cài đặt & Chạy
 
+### 1️⃣ Khởi chạy Server
+1.  Mở Solution `FileTransferSystem.sln` bằng Visual Studio.
+2.  Chọn project **FileTransferServer** làm *Startup Project* (hoặc chuột phải -> Debug -> Start new instance).
+3.  Nhấn **Start**.
+4.  Server sẽ lắng nghe tại cổng mặc định **8080**.
 
-Nhấn Start để bật server.
+### 2️⃣ Khởi chạy Client
+1.  Chạy project **FileTransferClient**.
+2.  Nhập thông tin kết nối:
+    * **Server IP:** * `127.0.0.1` (nếu chạy cùng máy - Localhost).
+        * `IP LAN` (ví dụ: `192.168.1.10`) nếu chạy khác máy.
+    * **Port:** `8080`.
+3.  Nhấn **Browse (...)** để chọn file cần gửi.
+4.  Nhấn **Send / Upload** để bắt đầu.
 
-Server sẽ chạy trên port 8080 và hiển thị log khi có client kết nối.
+---
 
-2️⃣ Chạy Client để gửi file
+## 🌐 Cấu hình mạng (LAN)
 
-Chạy project:
+Để hai máy tính khác nhau trong cùng mạng LAN có thể truyền file, cần thực hiện:
 
-FileTransferClient
+1.  **Lấy IP của máy chạy Server:**
+    Mở CMD, gõ lệnh:
+    ```cmd
+    ipconfig
+    ```
+    *Lấy địa chỉ IPv4 (ví dụ: 192.168.1.15).*
 
+2.  **Mở port qua Firewall (trên máy Server):**
+    Nếu Client không kết nối được, hãy chạy lệnh sau dưới quyền Administrator:
+    ```cmd
+    netsh advfirewall firewall add rule name="FileTransferServer" dir=in action=allow protocol=TCP localport=8080
+    ```
 
-Nhập IP Server:
+---
 
-Nếu chạy cùng máy → 127.0.0.1
+## 📂 Lưu trữ dữ liệu
 
-Nếu chạy máy khác trong LAN → nhập IPv4 thật (vd: 192.168.1.10)
+File sau khi Server nhận thành công sẽ được lưu tại:
+`FileTransferServer/bin/Debug/Received/`
 
-Nhấn Browse để chọn file.
+> **Lưu ý:** Tên file sẽ được tự động thêm **Timestamp** (HHmmss) vào phía trước để đảm bảo tính duy nhất (Ví dụ: `084450_hello.txt`).
 
-Nhấn Send để bắt đầu truyền file.
+---
 
-Xem tiến trình:
+## 👥 Thành viên thực hiện
 
-% hoàn thành
+| STT | Họ và tên | MSSV | Vai trò |
+|:---:|:---|:---:|:---|
+| 1 | **Võ Phát Đạt** | [MSSV_Của_Ông] | Dev (Fullstack) |
+| 2 | [Tên thành viên khác] | [MSSV] | ... |
 
-Số byte đã gửi
+---
 
-Tốc độ gửi (MB/s)
+## ✅ Trạng thái dự án
 
-🌐 Kết nối qua LAN
-
-Để máy khác gửi file tới Server, cần:
-
-✔ Xác định IP Server
-
-Mở CMD và chạy:
-
-ipconfig
-
-
-Lấy IPv4 (ví dụ: 192.168.1.15)
-
-✔ Mở cổng Firewall 8080 (nếu cần)
-netsh advfirewall firewall add rule name="FileTransferServer" dir=in action=allow protocol=TCP localport=8080
-
-✔ Client nhập đúng IP và nhấn Send
-📂 Thư mục lưu file nhận được
-
-Server sẽ lưu file vào thư mục:
-
-FileTransferServer/bin/Debug/Received/
-
-
-Tên file được tự động thêm timestamp để tránh trùng lặp.
-
-🧠 Các kỹ thuật đã sử dụng
-
-TCP Socket: TcpClient, TcpListener
-
-Luồng dữ liệu: NetworkStream, FileStream
-
-Truyền dữ liệu dạng nhị phân (binary stream)
-
-Đa luồng (Thread) để xử lý nhiều client đồng thời
-
-Giao diện WinForms (progress bar, log real-time)
-
-Xử lý buffer lớn (1MB) để tối ưu tốc độ
-
-🛠 Yêu cầu môi trường
-
-Windows
-
-.NET Framework 4.7.2 trở lên
-
-Visual Studio 2022 / 2019
-
-👥 Thành viên nhóm
-
-Võ Phát Đạt
-
-(Thêm tên bạn nếu cần)
-
-✅ Trạng thái dự án
-
-Đã hoàn thiện và kiểm thử với file nhỏ đến file lớn (mp4, zip, exe…).
+- [x] Thiết kế giao diện WinForms (Flat UI).
+- [x] Xử lý kết nối TCP cơ bản.
+- [x] Truyền nhận file binary (ảnh, video, zip...).
+- [x] Hiển thị tiến trình (Progress Bar).
+- [x] Tính toán tốc độ truyền (Speed Meter).
+- [x] Xử lý va chạm tên file (Collision Handling).
