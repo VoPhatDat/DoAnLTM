@@ -1,17 +1,40 @@
-# Visual Studio cache
+# ========= VISUAL STUDIO =========
 .vs/
-
-# Build folders
-bin/
-obj/
-
-# User-specific files
 *.user
 *.suo
-*.userprefs
+*.cache
+*.db
 
-# Logs
+# ========= BUILD OUTPUT =========
+bin/
+obj/
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+*.dll
+*.pdb
+*.ilk
 *.log
 
-# Temp
+# ========= TEMP & CACHE =========
 *.tmp
+*.temp
+*.log
+*.jsonc
+
+# ========= VISUAL STUDIO DESIGNER =========
+*.Designer.cs~   # Temp file khi VS đang edit form
+
+# ========= RECYCLER =========
+_ReSharper*/
+*.DotSettings.user
+
+# ========= MISC =========
+*.bak
+*.orig
+*.swp
+*.DS_Store
+Thumbs.db
