@@ -31,13 +31,27 @@ namespace FileTransferServer
         {
             try
             {
-                listener = new TcpListener(IPAddress.Any, 8080); // Nhận trên mọi IP máy
+                // --- ĐOẠN MỚI: LẤY PORT TỪ GIAO DIỆN ---
+                // Parse số từ TextBox, nếu lỗi thì mặc định về 8080
+                if (!int.TryParse(txtPort.Text, out int port) || port < 1 || port > 65535)
+                {
+                    Log("[-] Invalid Port! Please enter 1 - 65535.");
+                    return;
+                }
+
+                listener = new TcpListener(IPAddress.Any, port); // Dùng biến port vừa lấy
                 listener.Start();
+                // ---------------------------------------
 
                 running = true;
-                btnStart.Text = "Stop";
-                this.Text = "File Transfer Server - Port 8080 (Đang chạy)";
-                Log("Server đã khởi động! Đang chờ client...");
+
+                // Update giao diện
+                btnStart.Text = "STOP";
+                btnStart.BackColor = System.Drawing.Color.DarkRed; // Đổi màu nút thành đỏ cho ngầu
+                txtPort.Enabled = false; // Khóa ô nhập port lại
+
+                this.Text = $"Server Monitor - [ONLINE] - Port {port}";
+                Log($"[*] Server started. Listening on Port {port}...");
 
                 // Thread chờ kết nối client
                 Thread t = new Thread(AcceptLoop);
@@ -46,19 +60,23 @@ namespace FileTransferServer
             }
             catch (Exception ex)
             {
-                Log("Lỗi: " + ex.Message);
+                Log("[-] Error starting server: " + ex.Message);
+                txtPort.Enabled = true; // Lỗi thì mở lại cho nhập
             }
         }
 
-  
         void StopServer()
         {
             running = false;
             listener?.Stop();
 
-            btnStart.Text = "Start";
-            this.Text = "File Transfer Server - Đã dừng";
-            Log("Server đã dừng.");
+            // Reset giao diện
+            btnStart.Text = "START";
+            btnStart.BackColor = System.Drawing.Color.FromArgb(0, 122, 204); // Trả về màu xanh
+            txtPort.Enabled = true; // Mở lại cho sửa Port
+
+            this.Text = "Server Monitor - [OFFLINE]";
+            Log("[-] Server stopped.");
         }
 
 
@@ -120,7 +138,7 @@ namespace FileTransferServer
                 {
                     byte[] buffer = new byte[1024 * 1024];
                     long received = 0;
-                    int read;
+                    int read;   
 
                     Log($"Đang nhận file từ {clientIP} ...");
 
@@ -180,5 +198,30 @@ namespace FileTransferServer
         }
 
         private void Form1_Load(object sender, EventArgs e) { }
+
+        // Sự kiện Click cho nút Open Folder
+        private void btnOpenFolder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Đường dẫn thư mục Received
+                string folderPath = Path.Combine(Application.StartupPath, "Received");
+
+                // Nếu thư mục chưa tồn tại (chưa nhận file nào) thì tạo mới luôn
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                // Mở thư mục bằng Windows Explorer
+                System.Diagnostics.Process.Start("explorer.exe", folderPath);
+
+                Log("[*] System: Opened 'Received' folder.");
+            }
+            catch (Exception ex)
+            {
+                Log("[-] Error opening folder: " + ex.Message);
+            }
+        }
     }
 }
