@@ -25,7 +25,6 @@ namespace FileTransferClient
 
             // Gán sự kiện cho nút
             btnSend.Click += btnSend_Click;
-            btnBrowse.Click += btnBrowse_Click;
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
