@@ -86,11 +86,3 @@ File sau khi Server nhận thành công sẽ được lưu tại:
 
 ---
 
-## ✅ Trạng thái dự án
-
-- [x] Thiết kế giao diện WinForms (Flat UI).
-- [x] Xử lý kết nối TCP cơ bản.
-- [x] Truyền nhận file binary (ảnh, video, zip...).
-- [x] Hiển thị tiến trình (Progress Bar).
-- [x] Tính toán tốc độ truyền (Speed Meter).
-- [x] Xử lý va chạm tên file (Collision Handling).
