@@ -140,5 +140,10 @@ namespace FileTransferClient
             }
             return $"{size:F1} {suffixes[i]}";
         }
+
+        private void btnSend_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
