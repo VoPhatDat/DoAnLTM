@@ -41,7 +41,7 @@
             this.btnStart.TabIndex = 0;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
-
+            this.btnStart.Click += new System.EventHandler(this.button1_Click);
             // 
             // richTextBox1
             // 
@@ -70,7 +70,7 @@
             this.Controls.Add(this.btnStart);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.btnStart.Click += new System.EventHandler(this.button1_Click);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
