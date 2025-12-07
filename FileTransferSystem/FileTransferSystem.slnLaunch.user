@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "FileTransferServer\\FileTransferServer.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "FileTransferClient\\FileTransferClient.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
