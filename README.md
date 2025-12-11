@@ -4,7 +4,7 @@
 
 ## 📝 Giới thiệu
 
-Hệ thống triển khai mô hình **Client - Server** cho phép truyền tải tập tin (mọi định dạng: `.mp4`, `.zip`, `.exe`,...) với dung lượng lớn qua mạng LAN/Internet. 
+Hệ thống triển khai mô hình **Client - Server** cho phép truyền tải tập tin (mọi định dạng: `.mp4`, `.zip`, `.exe`,...) với dung lượng lớn qua mạng LAN. 
 
 Hệ thống bao gồm 2 module chính:
 * **Server:** Lắng nghe kết nối và nhận file.
